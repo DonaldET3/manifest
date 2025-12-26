@@ -1,7 +1,7 @@
 // Opal Manifest
 // for Unix-like systems
 // version 1
-// written 2024
+// written in 2024 by DonaldET3
 
 #include <cstdlib>
 // EXIT_FAILURE

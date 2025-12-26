@@ -1,6 +1,7 @@
 /* Opal Manifest
  * for Unix
  * version 1
+ * written in 2022 by DonaldET3
  */
 
 

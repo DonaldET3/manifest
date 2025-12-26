@@ -1,6 +1,6 @@
 Opal file manifest format for Unix systems
 version 1
-written May 2022
+written May 2022 by DonaldET3
 
 This paragraph describes the general structure of this format. A manifest is a series of fields. Each field has a newline character at the end. Fields are grouped into records. Each record is seperated by an empty field. Each field contains a series of elements. Each element is separated from the next element by a space character. The first element in each field is the field type indicator. The first field in each record is the record type indicator. Numbers are decimal unless otherwise indicated. The filename extension may be "oumnf".
 

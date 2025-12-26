@@ -1,4 +1,4 @@
-Copyright (C) 2024 by DonaldET3
+Copyright (C) 2022, 2024 by DonaldET3
 
 Permission to use, copy, modify, and distribute this software for any purpose with or without fee is hereby granted.
 
