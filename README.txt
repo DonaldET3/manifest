@@ -1,6 +1,8 @@
 Opal file manifest program
 version 1
 
+This program is under development and currently not usable.
+
 This program creates a manifest file containing metadata of files in a file hierarchy. The files are specified on the command line and the manifest file is output to standard output. A manifest file that needs to be updated can be input through standard input.
 
 options
