@@ -1,0 +1,39 @@
+Opal file manifest format for Unix systems
+version 1
+written May 2022
+
+This paragraph describes the general structure of this format. A manifest is a series of fields. Each field has a newline character at the end. Fields are grouped into records. Each record is seperated by an empty field. Each field contains a series of elements. Each element is separated from the next element by a space character. The first element in each field is the field type indicator. The first field in each record is the record type indicator. Numbers are decimal unless otherwise indicated. The filename extension may be "oumnf".
+
+There is one special field type that breaks the normal format structure: the "data" field. A data field appears to be made up of two fields. The first part of a data field contains at least 2 elements after the field name: the data length and the data type. The data type element can be any series of characters. The second part of a data field is separated from the first part by a newline character. The second part of a data field contains a number of bytes of arbitrary binary data. The length of the second part was defined by the data length element in the first part. The second part has a newline character after the arbitrary data. The newline character is not part of the data length.
+
+There is one special record type that breaks the normal format structure: the "end" record. An end record marks the end of the manifest. It is only required if arbitrary binary data needs to be stored after the end of the manifest. The end record only has a record type indicator; it cannot contain any fields.
+
+A manifest file always starts with an "OUmanifest" record. The second element of the record type indicator is the version number.
+
+The following records and fields do not need to be specifically supported by an implementation, but their meanings are defined here.
+
+A file record contains file metadata. The record type indicator has a second element that specifies the file type.
+
+file types
+"regular" is a regular file
+"directory" is a directory
+"character" is a character device
+"block" is a block device
+"symlink" is a symbolic link
+"fifo" is a pipe
+"socket" is a socket
+
+The following fields have defined meanings inside of a file record.
+
+A path field is a type of data field that contains the file path.
+
+A size field contains the file size in bytes.
+
+An mtime field contains the modificaiton time for the file. The first element after the field name is the number of seconds since the Unix epoch. The second element is the nanosecond within that second. The nanosecond element is optional.
+
+A hash field contains a hash value for the file data. The first element after the field name indicates the hash type. The second element is the hash value in hexadecimal form with capital digits. A phash field is similar, but it contains the hash of one piece of the file data.
+
+A hash-mtime field contains a hash function name and the modification time of the file when it was hashed with that function.
+
+A hash record contains the parameters for a hash function used later in the file. The second element in the record type field indicates the hash function type. There might be multiple ways to specify parameters for an algorithm, so the third element is the version number for the parameter style. A hash record may contain a "piecesize" field that indicates the size of the pieces when a file is hashed in multiple pieces.
+
