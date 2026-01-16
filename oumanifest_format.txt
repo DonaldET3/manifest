@@ -1,6 +1,6 @@
 Opal file manifest format for Unix systems
 version 1
-written May 2022 by DonaldET3
+written May 2022, developed January 2026 by DonaldET3
 
 This paragraph describes the general structure of this format. A manifest is a series of fields. Each field has a newline character at the end. Fields are grouped into records. Each record is seperated by an empty field. Each field contains a series of elements. Each element is separated from the next element by a space character. The first element in each field is the field type indicator. The first field in each record is the record type indicator. Numbers are decimal unless otherwise indicated. The filename extension may be "oumnf".
 
@@ -31,9 +31,11 @@ A size field contains the file size in bytes.
 
 An mtime field contains the modificaiton time for the file. The first element after the field name is the number of seconds since the Unix epoch. The second element is the nanosecond within that second. The nanosecond element is optional.
 
-A hash field contains a hash value for the file data. The first element after the field name indicates the hash type. The second element is the hash value in hexadecimal form with capital digits. A phash field is similar, but it contains the hash of one piece of the file data.
+A hash field contains a hash value for the file data. The first element after the field name indicates the hash function name. The second element specifies the parameter set index number. The third element is the hash value in hexadecimal form with capital digits. A phash field is similar, but it contains the hash of one piece of the file data.
 
-A hash-mtime field contains a hash function name and the modification time of the file when it was hashed with that function.
+A hash-mtime field contains a hash function name, parameter set index number, and the modification time of the file when it was hashed with that function.
 
-A hash record contains the parameters for a hash function used later in the file. The second element in the record type field indicates the hash function type. There might be multiple ways to specify parameters for an algorithm, so the third element is the version number for the parameter style. A hash record may contain a "piecesize" field that indicates the size of the pieces when a file is hashed in multiple pieces.
+A hash record contains the parameters for a hash function used later in the file. The second element in the record type field indicates the hash function type. There might be multiple ways to specify parameters for an algorithm, so the third element is the version number for the parameter style. When there are multiple hash records for a particular function name, the sets of parameters from the records are indexed (starting from 1) according to what order they appear in the manifest file.
+
+A hash record may contain a "piecesize" field that indicates the size of the pieces in bytes when files are hashed in multiple pieces.
 
